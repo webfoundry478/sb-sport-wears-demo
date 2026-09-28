@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Cart | SB Sport Wears</title>
+  <meta name="description" content="Your SB Sport Wears shopping cart.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #070809;
+      color: #fff;
+      font-family: "Inter", sans-serif;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    /* =========================
+       NAV
+    ========================= */
+
+    nav {
+      height: 82px;
+      padding: 0 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      background: rgba(7,8,9,.94);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(15px);
+    }
+
+    .logo {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 29px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      margin-left: 4px;
+      font-weight: 400;
+      opacity: .5;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .nav-links a {
+      opacity: .6;
+      transition: .25s;
+    }
+
+    .nav-links a:hover,
+    .nav-links .active {
+      opacity: 1;
+    }
+
+    .cart-link {
+      position: relative;
+      border: 1px solid rgba(255,255,255,.18);
+      padding: 11px 15px;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      width: 18px;
+      height: 18px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #fff;
+      color: #070809;
+      font-size: 9px;
+    }
+
+    /* =========================
+       PAGE HEADER
+    ========================= */
+
+    .page-header {
+      padding: 95px 7% 70px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 85% 50%, rgba(255,255,255,.07), transparent 30%),
+        #0a0c0f;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .page-header::after {
+      content: "CART";
+      position: absolute;
+      right: -10px;
+      bottom: -55px;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 190px;
+      line-height: 1;
+      font-weight: 900;
+      color: rgba(255,255,255,.025);
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      color: rgba(255,255,255,.4);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 30px;
+      height: 1px;
+      background: rgba(255,255,255,.6);
+    }
+
+    h1 {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: clamp(75px, 10vw, 135px);
+      line-height: .8;
+      letter-spacing: -3px;
+      text-transform: uppercase;
+    }
+
+    /* =========================
+       CART AREA
+    ========================= */
+
+    .cart-section {
+      padding: 75px 7% 120px;
+    }
+
+    .cart-layout {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 55px;
+      align-items: start;
+    }
+
+    /* =========================
+       CART ITEMS
+    ========================= */
+
+    .cart-items {
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 130px 1fr auto;
+      gap: 25px;
+      align-items: center;
+      padding: 22px 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .item-image {
+      width: 130px;
+      height: 130px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle, #272a2e, #101215 70%);
+      border: 1px solid rgba(255,255,255,.07);
+    }
+
+    .item-image::before {
+      content: "";
+      position: absolute;
+      width: 75px;
+      height: 75px;
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 50%;
+    }
+
+    .item-image span {
+      position: relative;
+      z-index: 2;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 22px;
+      font-weight: 900;
+      color: rgba(255,255,255,.2);
+    }
+
+    .item-category {
+      color: rgba(255,255,255,.32);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .item-name {
+      margin-top: 8px;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 27px;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .item-price {
+      margin-top: 13px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .item-controls {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .quantity {
+      display: flex;
+      align-items: center;
+      border: 1px solid rgba(255,255,255,.13);
+    }
+
+    .quantity button {
+      width: 30px;
+      height: 30px;
+      border: none;
+      background: transparent;
+      color: #fff;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .quantity button:hover {
+      background: rgba(255,255,255,.08);
+    }
+
+    .quantity span {
+      width: 30px;
+      text-align: center;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .remove-btn {
+      border: none;
+      background: none;
+      color: rgba(255,255,255,.3);
+      cursor: pointer;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: .2s;
+    }
+
+    .remove-btn:hover {
+      color: #fff;
+    }
+
+    .item-total {
+      min-width: 80px;
+      text-align: right;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    /* =========================
+       SUMMARY
+    ========================= */
+
+    .summary {
+      padding: 30px;
+      background: #0c0e11;
+      border: 1px solid rgba(255,255,255,.08);
+      position: sticky;
+      top: 110px;
+    }
+
+    .summary-label {
+      color: rgba(255,255,255,.35);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .summary h2 {
+      margin-top: 10px;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 43px;
+      line-height: .9;
+      text-transform: uppercase;
+    }
+
+    .summary-lines {
+      margin-top: 35px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    .summary-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 16px 0;
+      color: rgba(255,255,255,.5);
+      font-size: 11px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .summary-line.total {
+      color: #fff;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .checkout-btn {
+      display: block;
+      width: 100%;
+      margin-top: 25px;
+      padding: 17px;
+      border: none;
+      background: #fff;
+      color: #070809;
+      text-align: center;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      transition: .25s;
+    }
+
+    .checkout-btn:hover {
+      background: #ddd;
+      transform: translateY(-2px);
+    }
+
+    .continue-btn {
+      display: block;
+      margin-top: 16px;
+      text-align: center;
+      color: rgba(255,255,255,.4);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .continue-btn:hover {
+      color: #fff;
+    }
+
+    /* =========================
+       EMPTY CART
+    ========================= */
+
+    .empty-cart {
+      display: none;
+      padding: 90px 20px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,.07);
+      background: #0c0e11;
+    }
+
+    .empty-cart.show {
+      display: block;
+    }
+
+    .empty-cart-icon {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 90px;
+      font-weight: 900;
+      line-height: .8;
+      color: rgba(255,255,255,.1);
+    }
+
+    .empty-cart h2 {
+      margin-top: 25px;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 48px;
+      text-transform: uppercase;
+    }
+
+    .empty-cart p {
+      max-width: 400px;
+      margin: 15px auto 0;
+      color: rgba(255,255,255,.4);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .shop-btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 15px 24px;
+      background: #fff;
+      color: #070809;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      padding: 55px 7% 28px;
+      background: #040506;
+      border-top: 1px solid rgba(255,255,255,.07);
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      padding-bottom: 42px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+
+    .footer-brand {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 38px;
+      font-weight: 900;
+    }
+
+    .footer-brand span {
+      color: rgba(255,255,255,.45);
+      font-weight: 400;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      color: rgba(255,255,255,.5);
+      font-size: 11px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding-top: 24px;
+      color: rgba(255,255,255,.27);
+      font-size: 10px;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+
+      .cart-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .summary {
+        position: static;
+      }
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        padding: 0 5%;
+      }
+
+      .logo {
+        font-size: 24px;
+      }
+
+      .page-header {
+        padding: 75px 6% 60px;
+      }
+
+      .cart-section {
+        padding: 55px 5% 80px;
+      }
+
+      .cart-item {
+        grid-template-columns: 85px 1fr;
+        gap: 15px;
+      }
+
+      .item-image {
+        width: 85px;
+        height: 85px;
+      }
+
+      .item-image span {
+        font-size: 16px;
+      }
+
+      .item-total {
+        grid-column: 2;
+        text-align: left;
+      }
+
+      .summary {
+        padding: 25px;
+      }
+
+      footer {
+        padding-left: 6%;
+        padding-right: 6%;
+      }
+
+      .footer-top,
+      .footer-bottom {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+
+  <nav>
+
+    <a href="index.html" class="logo">
+      SB <span>SPORT WEARS</span>
+    </a>
+
+    <ul class="nav-links">
+
+      <li>
+        <a href="index.html">Home</a>
+      </li>
+
+      <li>
+        <a href="shop.html">Shop</a>
+      </li>
+
+      <li>
+        <a href="about.html">About</a>
+      </li>
+
+      <li>
+        <a href="contact.html">Contact</a>
+      </li>
+
+    </ul>
+
+    <a href="cart.html" class="cart-link">
+      CART
+      <span class="cart-count" id="cartCount">0</span>
+    </a>
+
+  </nav>
+
+
+  <!-- PAGE HEADER -->
+
+  <header class="page-header">
+
+    <div class="eyebrow">
+      Your Selection
+    </div>
+
+    <h1>
+      Your<br>
+      Cart.
+    </h1>
+
+  </header>
+
+
+  <!-- CART -->
+
+  <main class="cart-section">
+
+    <div class="cart-layout">
+
+      <!-- ITEMS -->
+
+      <section>
+
+        <div
+          class="cart-items"
+          id="cartItems"
+        ></div>
+
+
+        <!-- EMPTY -->
+
+        <div
+          class="empty-cart"
+          id="emptyCart"
+        >
+
+          <div class="empty-cart-icon">
+            00
+          </div>
+
+          <h2>
+            Your Cart Is Empty.
+          </h2>
+
+          <p>
+            Looks like you haven't added anything yet.
+            Find your next piece of football gear and
+            build your selection.
+          </p>
+
+          <a
+            href="shop.html"
+            class="shop-btn"
+          >
+            EXPLORE SHOP →
+          </a>
+
+        </div>
+
+      </section>
+
+
+      <!-- SUMMARY -->
+
+      <aside
+        class="summary"
+        id="summary"
+      >
+
+        <div class="summary-label">
+          Order Summary
+        </div>
+
+        <h2>
+          Ready<br>
+          To Play?
+        </h2>
+
+
+        <div class="summary-lines">
+
+          <div class="summary-line">
+            <span>Items</span>
+            <span id="summaryItems">0</span>
+          </div>
+
+          <div class="summary-line">
+            <span>Subtotal</span>
+            <span id="subtotal">$0.00</span>
+          </div>
+
+          <div class="summary-line">
+            <span>Delivery</span>
+            <span id="delivery">Calculated at checkout</span>
+          </div>
+
+          <div class="summary-line total">
+            <span>Total</span>
+            <span id="total">$0.00</span>
+          </div>
+
+        </div>
+
+
+        <a
+          href="checkout.html"
+          class="checkout-btn"
+          id="checkoutButton"
+        >
+          PROCEED TO CHECKOUT →
+        </a>
+
+        <a
+          href="shop.html"
+          class="continue-btn"
+        >
+          ← Continue Shopping
+        </a>
+
+      </aside>
+
+    </div>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="footer-top">
+
+      <div class="footer-brand">
+        SB <span>SPORT WEARS</span>
+      </div>
+
+      <div class="footer-links">
+
+        <a href="index.html">
+          Home
+        </a>
+
+        <a href="shop.html">
+          Shop
+        </a>
+
+        <a href="about.html">
+          About
+        </a>
+
+        <a href="contact.html">
+          Contact
+        </a>
+
+        <a href="cart.html">
+          Cart
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+      <span>
+        © 2026 SB Sport Wears. All rights reserved.
+      </span>
+
+      <span>
+        Website designed & developed by WebFoundry
+      </span>
+
+    </div>
+
+  </footer>
+
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    let cart =
+      JSON.parse(localStorage.getItem("sbCart")) || [];
+
+
+    const cartItems =
+      document.getElementById("cartItems");
+
+    const emptyCart =
+      document.getElementById("emptyCart");
+
+    const summary =
+      document.getElementById("summary");
+
+    const cartCount =
+      document.getElementById("cartCount");
+
+    const summaryItems =
+      document.getElementById("summaryItems");
+
+    const subtotalElement =
+      document.getElementById("subtotal");
+
+    const totalElement =
+      document.getElementById("total");
+
+
+    /* =========================
+       SAVE CART
+    ========================= */
+
+    function saveCart() {
+
+      localStorage.setItem(
+        "sbCart",
+        JSON.stringify(cart)
+      );
+
+    }
+
+
+    /* =========================
+       UPDATE CART
+    ========================= */
+
+    function updateCart() {
+
+      cartItems.innerHTML = "";
+
+      let itemCount = 0;
+      let subtotal = 0;
+
+
+      cart.forEach((item, index) => {
+
+        const quantity =
+          Number(item.quantity) || 0;
+
+        const price =
+          Number(item.price) || 0;
+
+        const itemTotal =
+          price * quantity;
+
+        itemCount += quantity;
+        subtotal += itemTotal;
+
+
+        const itemElement =
+          document.createElement("article");
+
+        itemElement.className = "cart-item";
+
+
+        itemElement.innerHTML = `
+
+          <div class="item-image">
+            <span>
+              SB
+            </span>
+          </div>
+
+          <div>
+
+            <div class="item-category">
+              Football Gear
+            </div>
+
+            <div class="item-name">
+              ${escapeHTML(item.name)}
+            </div>
+
+            <div class="item-price">
+              $${price.toFixed(2)} each
+            </div>
+
+            <div class="item-controls">
+
+              <div class="quantity">
+
+                <button
+                  onclick="changeQuantity(${index}, -1)"
+                  aria-label="Decrease quantity"
+                >
+                  −
+                </button>
+
+                <span>
+                  ${quantity}
+                </span>
+
+                <button
+                  onclick="changeQuantity(${index}, 1)"
+                  aria-label="Increase quantity"
+                >
+                  +
+                </button>
+
+              </div>
+
+              <button
+                class="remove-btn"
+                onclick="removeItem(${index})"
+              >
+                Remove
+              </button>
+
+            </div>
+
+          </div>
+
+          <div class="item-total">
+            $${itemTotal.toFixed(2)}
+          </div>
+
+        `;
+
+
+        cartItems.appendChild(itemElement);
+
+      });
+
+
+      cartCount.textContent = itemCount;
+
+      summaryItems.textContent = itemCount;
+
+      subtotalElement.textContent =
+        `$${subtotal.toFixed(2)}`;
+
+      totalElement.textContent =
+        `$${subtotal.toFixed(2)}`;
+
+
+      if (cart.length === 0) {
+
+        emptyCart.classList.add("show");
+        summary.style.display = "none";
+
+      } else {
+
+        emptyCart.classList.remove("show");
+        summary.style.display = "block";
+
+      }
+
+
+      saveCart();
+
+    }
+
+
+    /* =========================
+       QUANTITY
+    ========================= */
+
+    function changeQuantity(index, amount) {
+
+      if (!cart[index]) return;
+
+      cart[index].quantity += amount;
+
+
+      if (cart[index].quantity <= 0) {
+
+        cart.splice(index, 1);
+
+      }
+
+
+      updateCart();
+
+    }
+
+
+    /* =========================
+       REMOVE
+    ========================= */
+
+    function removeItem(index) {
+
+      if (!cart[index]) return;
+
+      cart.splice(index, 1);
+
+      updateCart();
+
+    }
+
+
+    /* =========================
+       SECURITY
+    ========================= */
+
+    function escapeHTML(value) {
+
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+    }
+
+
+    /* =========================
+       START
+    ========================= */
+
+    updateCart();
+
+  </script>
+
+</body>
+</html>
