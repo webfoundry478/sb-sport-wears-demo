@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>About | SB Sport Wears</title>
+  <meta name="description" content="Learn more about SB Sport Wears and the football culture behind the brand.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #070809;
+      color: #fff;
+      font-family: "Inter", sans-serif;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* =========================
+       NAV
+    ========================= */
+
+    nav {
+      height: 82px;
+      padding: 0 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      background: rgba(7,8,9,.94);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(15px);
+    }
+
+    .logo {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 29px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      margin-left: 4px;
+      font-weight: 400;
+      opacity: .5;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .nav-links a {
+      opacity: .6;
+      transition: .25s;
+    }
+
+    .nav-links a:hover,
+    .nav-links .active {
+      opacity: 1;
+    }
+
+    .cart-link {
+      position: relative;
+      border: 1px solid rgba(255,255,255,.18);
+      padding: 11px 15px;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      width: 18px;
+      height: 18px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #fff;
+      color: #070809;
+      font-size: 9px;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 620px;
+      padding: 110px 7%;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 80% 45%, rgba(255,255,255,.075), transparent 30%),
+        #0a0c0f;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .hero::after {
+      content: "SB";
+      position: absolute;
+      right: -30px;
+      bottom: -100px;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 390px;
+      line-height: 1;
+      font-weight: 900;
+      color: rgba(255,255,255,.025);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      color: rgba(255,255,255,.42);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 32px;
+      height: 1px;
+      background: rgba(255,255,255,.6);
+    }
+
+    h1 {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: clamp(75px, 11vw, 155px);
+      line-height: .8;
+      letter-spacing: -4px;
+      text-transform: uppercase;
+    }
+
+    .hero-text {
+      max-width: 600px;
+      margin-top: 35px;
+      color: rgba(255,255,255,.5);
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
+    /* =========================
+       STORY
+    ========================= */
+
+    .story {
+      padding: 120px 7%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: center;
+    }
+
+    .section-label {
+      color: rgba(255,255,255,.35);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .story h2 {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: clamp(50px, 6vw, 82px);
+      line-height: .9;
+      text-transform: uppercase;
+      letter-spacing: -2px;
+    }
+
+    .story-copy {
+      color: rgba(255,255,255,.52);
+      font-size: 14px;
+      line-height: 1.9;
+      margin-top: 30px;
+    }
+
+    .story-copy + .story-copy {
+      margin-top: 18px;
+    }
+
+    .visual-box {
+      min-height: 480px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, #171a1e, #090a0c);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .visual-box::before {
+      content: "";
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 50%;
+    }
+
+    .visual-box::after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 50%;
+    }
+
+    .visual-text {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .visual-text strong {
+      display: block;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 110px;
+      line-height: .8;
+      font-weight: 900;
+    }
+
+    .visual-text span {
+      display: block;
+      margin-top: 20px;
+      color: rgba(255,255,255,.35);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 4px;
+    }
+
+    /* =========================
+       VALUES
+    ========================= */
+
+    .values {
+      padding: 110px 7%;
+      background: #0b0d10;
+      border-top: 1px solid rgba(255,255,255,.06);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .values-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 40px;
+      margin-bottom: 55px;
+    }
+
+    .values-heading h2 {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: clamp(55px, 7vw, 95px);
+      line-height: .85;
+      text-transform: uppercase;
+    }
+
+    .values-heading p {
+      max-width: 390px;
+      color: rgba(255,255,255,.4);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid rgba(255,255,255,.08);
+      border-left: 1px solid rgba(255,255,255,.08);
+    }
+
+    .value-card {
+      min-height: 260px;
+      padding: 35px;
+      border-right: 1px solid rgba(255,255,255,.08);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      transition: .3s;
+    }
+
+    .value-card:hover {
+      background: rgba(255,255,255,.025);
+    }
+
+    .value-number {
+      color: rgba(255,255,255,.25);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .value-card h3 {
+      margin-top: 65px;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 32px;
+      text-transform: uppercase;
+    }
+
+    .value-card p {
+      margin-top: 12px;
+      color: rgba(255,255,255,.4);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    /* =========================
+       CTA
+    ========================= */
+
+    .cta {
+      padding: 125px 7%;
+      text-align: center;
+      background:
+        radial-gradient(circle at center, rgba(255,255,255,.055), transparent 40%),
+        #070809;
+    }
+
+    .cta-label {
+      color: rgba(255,255,255,.35);
+      font-size: 10px;
+      letter-spacing: 3px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .cta h2 {
+      margin-top: 20px;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: clamp(65px, 10vw, 130px);
+      line-height: .8;
+      letter-spacing: -3px;
+      text-transform: uppercase;
+    }
+
+    .cta-button {
+      display: inline-block;
+      margin-top: 45px;
+      padding: 16px 28px;
+      background: #fff;
+      color: #070809;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      transition: .25s;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      background: #ddd;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      padding: 55px 7% 28px;
+      background: #040506;
+      border-top: 1px solid rgba(255,255,255,.07);
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      padding-bottom: 42px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+
+    .footer-brand {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 38px;
+      font-weight: 900;
+    }
+
+    .footer-brand span {
+      color: rgba(255,255,255,.45);
+      font-weight: 400;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      color: rgba(255,255,255,.5);
+      font-size: 11px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding-top: 24px;
+      color: rgba(255,255,255,.27);
+      font-size: 10px;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 800px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        min-height: 530px;
+        padding: 80px 6%;
+      }
+
+      .story {
+        grid-template-columns: 1fr;
+        gap: 55px;
+        padding: 80px 6%;
+      }
+
+      .visual-box {
+        min-height: 380px;
+      }
+
+      .values {
+        padding: 80px 6%;
+      }
+
+      .values-heading {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .value-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta {
+        padding: 90px 6%;
+      }
+
+      footer {
+        padding-left: 6%;
+        padding-right: 6%;
+      }
+
+      .footer-top,
+      .footer-bottom {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 520px) {
+
+      nav {
+        padding: 0 5%;
+      }
+
+      .logo {
+        font-size: 24px;
+      }
+
+      .hero::after {
+        font-size: 250px;
+      }
+
+      .story h2 {
+        font-size: 55px;
+      }
+
+      .visual-text strong {
+        font-size: 85px;
+      }
+
+      .value-card {
+        min-height: 230px;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+
+  <nav>
+
+    <a href="index.html" class="logo">
+      SB <span>SPORT WEARS</span>
+    </a>
+
+    <ul class="nav-links">
+      <li>
+        <a href="index.html">Home</a>
+      </li>
+
+      <li>
+        <a href="shop.html">Shop</a>
+      </li>
+
+      <li>
+        <a href="about.html" class="active">About</a>
+      </li>
+
+      <li>
+        <a href="contact.html">Contact</a>
+      </li>
+    </ul>
+
+    <a href="cart.html" class="cart-link">
+      CART
+      <span class="cart-count" id="cartCount">0</span>
+    </a>
+
+  </nav>
+
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <div class="eyebrow">
+        The SB Story
+      </div>
+
+      <h1>
+        Built<br>
+        For The<br>
+        Game.
+      </h1>
+
+      <p class="hero-text">
+        SB Sport Wears is built around a simple idea:
+        football is more than a game. It's a culture, a
+        passion and a way of life.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- STORY -->
+
+  <section class="story">
+
+    <div>
+
+      <div class="section-label">
+        Who We Are
+      </div>
+
+      <h2>
+        More Than<br>
+        Just Gear.
+      </h2>
+
+      <p class="story-copy">
+        Every player has a reason they step onto the pitch.
+        SB Sport Wears exists to give them the gear to match
+        that ambition.
+      </p>
+
+      <p class="story-copy">
+        From match-day essentials to training equipment,
+        our collection is designed around football culture,
+        performance and personal style.
+      </p>
+
+    </div>
+
+
+    <div class="visual-box">
+
+      <div class="visual-text">
+        <strong>SB</strong>
+        <span>SPORT • CULTURE • GAME</span>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- VALUES -->
+
+  <section class="values">
+
+    <div class="values-heading">
+
+      <h2>
+        What<br>
+        Drives Us.
+      </h2>
+
+      <p>
+        The game keeps moving. So do we.
+        Everything we do is built around players,
+        football culture and the pursuit of better.
+      </p>
+
+    </div>
+
+
+    <div class="value-grid">
+
+      <div class="value-card">
+
+        <div class="value-number">
+          01
+        </div>
+
+        <h3>
+          Football First
+        </h3>
+
+        <p>
+          Football is at the heart of everything we do,
+          from the products we offer to the way we build
+          the brand.
+        </p>
+
+      </div>
+
+
+      <div class="value-card">
+
+        <div class="value-number">
+          02
+        </div>
+
+        <h3>
+          Built To Perform
+        </h3>
+
+        <p>
+          We focus on football essentials made for
+          training sessions, match days and everything
+          in between.
+        </p>
+
+      </div>
+
+
+      <div class="value-card">
+
+        <div class="value-number">
+          03
+        </div>
+
+        <h3>
+          Wear The Culture
+        </h3>
+
+        <p>
+          Football is part of everyday life. Your kit,
+          boots and style should feel like you.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CTA -->
+
+  <section class="cta">
+
+    <div class="cta-label">
+      Ready For Kickoff?
+    </div>
+
+    <h2>
+      Find Your<br>
+      Game.
+    </h2>
+
+    <a href="shop.html" class="cta-button">
+      EXPLORE THE COLLECTION →
+    </a>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="footer-top">
+
+      <div class="footer-brand">
+        SB <span>SPORT WEARS</span>
+      </div>
+
+      <div class="footer-links">
+
+        <a href="index.html">
+          Home
+        </a>
+
+        <a href="shop.html">
+          Shop
+        </a>
+
+        <a href="about.html">
+          About
+        </a>
+
+        <a href="contact.html">
+          Contact
+        </a>
+
+        <a href="cart.html">
+          Cart
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+      <span>
+        © 2026 SB Sport Wears. All rights reserved.
+      </span>
+
+      <span>
+        Website designed & developed by WebFoundry
+      </span>
+
+    </div>
+
+  </footer>
+
+
+  <!-- CART SCRIPT -->
+
+  <script>
+
+    const cart =
+      JSON.parse(localStorage.getItem("sbCart")) || [];
+
+    const cartCount =
+      document.getElementById("cartCount");
+
+    const totalItems =
+      cart.reduce(
+        (total, item) =>
+          total + Number(item.quantity || 0),
+        0
+      );
+
+    cartCount.textContent = totalItems;
+
+  </script>
+
+</body>
+</html>
