@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Checkout | SB Sport Wears</title>
+  <meta name="description" content="Complete your SB Sport Wears order.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #070809;
+      color: #fff;
+      font-family: "Inter", sans-serif;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font-family: inherit;
+    }
+
+    /* =========================
+       NAV
+    ========================= */
+
+    nav {
+      height: 82px;
+      padding: 0 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      background: rgba(7,8,9,.94);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(15px);
+    }
+
+    .logo {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 29px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      margin-left: 4px;
+      font-weight: 400;
+      opacity: .5;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .nav-links a {
+      opacity: .6;
+      transition: .25s;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+    }
+
+    .cart-link {
+      position: relative;
+      border: 1px solid rgba(255,255,255,.18);
+      padding: 11px 15px;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      width: 18px;
+      height: 18px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #fff;
+      color: #070809;
+      font-size: 9px;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    .page-header {
+      padding: 90px 7% 70px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 85% 50%, rgba(255,255,255,.07), transparent 30%),
+        #0a0c0f;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .page-header::after {
+      content: "PAY";
+      position: absolute;
+      right: 0;
+      bottom: -65px;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 210px;
+      line-height: 1;
+      font-weight: 900;
+      color: rgba(255,255,255,.025);
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      color: rgba(255,255,255,.4);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 30px;
+      height: 1px;
+      background: rgba(255,255,255,.6);
+    }
+
+    h1 {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: clamp(75px, 10vw, 135px);
+      line-height: .8;
+      letter-spacing: -3px;
+      text-transform: uppercase;
+    }
+
+    /* =========================
+       CHECKOUT
+    ========================= */
+
+    .checkout-section {
+      padding: 75px 7% 120px;
+    }
+
+    .checkout-layout {
+      display: grid;
+      grid-template-columns: 1fr 390px;
+      gap: 60px;
+      align-items: start;
+    }
+
+    /* =========================
+       FORM
+    ========================= */
+
+    .form-section {
+      margin-bottom: 45px;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      margin-bottom: 25px;
+    }
+
+    .section-heading h2 {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 42px;
+      line-height: .9;
+      text-transform: uppercase;
+    }
+
+    .section-heading span {
+      color: rgba(255,255,255,.25);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .field {
+      margin-bottom: 16px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 9px;
+      color: rgba(255,255,255,.38);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,.1);
+      outline: none;
+      background: #0c0e11;
+      color: #fff;
+      padding: 15px;
+      font-size: 12px;
+      transition: .25s;
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: rgba(255,255,255,.18);
+    }
+
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus {
+      border-color: rgba(255,255,255,.4);
+    }
+
+    .field textarea {
+      min-height: 105px;
+      resize: vertical;
+    }
+
+    .field select {
+      cursor: pointer;
+    }
+
+    /* =========================
+       PAYMENT NOTICE
+    ========================= */
+
+    .payment-box {
+      padding: 22px;
+      background: #0c0e11;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .payment-option {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .payment-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.12);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .payment-text strong {
+      display: block;
+      font-size: 12px;
+    }
+
+    .payment-text span {
+      display: block;
+      margin-top: 5px;
+      color: rgba(255,255,255,.35);
+      font-size: 10px;
+      line-height: 1.5;
+    }
+
+    /* =========================
+       ORDER SUMMARY
+    ========================= */
+
+    .order-summary {
+      padding: 30px;
+      background: #0c0e11;
+      border: 1px solid rgba(255,255,255,.08);
+      position: sticky;
+      top: 110px;
+    }
+
+    .summary-label {
+      color: rgba(255,255,255,.35);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .order-summary h2 {
+      margin-top: 10px;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 44px;
+      line-height: .9;
+      text-transform: uppercase;
+    }
+
+    .order-items {
+      margin-top: 30px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .order-item-name {
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .order-item-quantity {
+      display: block;
+      margin-top: 5px;
+      color: rgba(255,255,255,.3);
+      font-size: 9px;
+    }
+
+    .order-item-price {
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .summary-lines {
+      margin-top: 15px;
+    }
+
+    .summary-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 13px 0;
+      color: rgba(255,255,255,.45);
+      font-size: 10px;
+    }
+
+    .summary-line.total {
+      margin-top: 5px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,.1);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .place-order {
+      width: 100%;
+      margin-top: 20px;
+      padding: 18px;
+      border: none;
+      background: #fff;
+      color: #070809;
+      cursor: pointer;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      transition: .25s;
+    }
+
+    .place-order:hover {
+      background: #ddd;
+      transform: translateY(-2px);
+    }
+
+    .secure-note {
+      margin-top: 14px;
+      color: rgba(255,255,255,.22);
+      font-size: 9px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    /* =========================
+       SUCCESS
+    ========================= */
+
+    .success-screen {
+      display: none;
+      min-height: 500px;
+      padding: 80px 30px;
+      text-align: center;
+      background: #0c0e11;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .success-screen.show {
+      display: block;
+    }
+
+    .success-mark {
+      width: 75px;
+      height: 75px;
+      margin: 0 auto;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 50%;
+      font-size: 25px;
+    }
+
+    .success-screen h2 {
+      margin-top: 30px;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 65px;
+      line-height: .85;
+      text-transform: uppercase;
+    }
+
+    .success-screen p {
+      max-width: 480px;
+      margin: 20px auto 0;
+      color: rgba(255,255,255,.4);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .order-number {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 12px 18px;
+      border: 1px solid rgba(255,255,255,.1);
+      color: rgba(255,255,255,.6);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .back-home {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 15px 25px;
+      background: #fff;
+      color: #070809;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      padding: 55px 7% 28px;
+      background: #040506;
+      border-top: 1px solid rgba(255,255,255,.07);
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      padding-bottom: 42px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+
+    .footer-brand {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 38px;
+      font-weight: 900;
+    }
+
+    .footer-brand span {
+      color: rgba(255,255,255,.45);
+      font-weight: 400;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      color: rgba(255,255,255,.5);
+      font-size: 11px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding-top: 24px;
+      color: rgba(255,255,255,.27);
+      font-size: 10px;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 950px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      .checkout-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .order-summary {
+        position: static;
+      }
+
+    }
+
+    @media (max-width: 600px) {
+
+      nav {
+        padding: 0 5%;
+      }
+
+      .logo {
+        font-size: 24px;
+      }
+
+      .page-header {
+        padding: 75px 6% 60px;
+      }
+
+      .checkout-section {
+        padding: 55px 5% 80px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .order-summary {
+        padding: 25px;
+      }
+
+      footer {
+        padding-left: 6%;
+        padding-right: 6%;
+      }
+
+      .footer-top,
+      .footer-bottom {
+        flex-direction: column;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+
+  <nav>
+
+    <a href="index.html" class="logo">
+      SB <span>SPORT WEARS</span>
+    </a>
+
+    <ul class="nav-links">
+
+      <li>
+        <a href="index.html">Home</a>
+      </li>
+
+      <li>
+        <a href="shop.html">Shop</a>
+      </li>
+
+      <li>
+        <a href="about.html">About</a>
+      </li>
+
+      <li>
+        <a href="contact.html">Contact</a>
+      </li>
+
+    </ul>
+
+    <a href="cart.html" class="cart-link">
+      CART
+      <span class="cart-count" id="cartCount">0</span>
+    </a>
+
+  </nav>
+
+
+  <!-- PAGE HEADER -->
+
+  <header class="page-header">
+
+    <div class="eyebrow">
+      Complete Your Order
+    </div>
+
+    <h1>
+      Check<br>
+      Out.
+    </h1>
+
+  </header>
+
+
+  <!-- CHECKOUT -->
+
+  <main class="checkout-section">
+
+    <!-- SUCCESS SCREEN -->
+
+    <section
+      class="success-screen"
+      id="successScreen"
+    >
+
+      <div class="success-mark">
+        ✓
+      </div>
+
+      <h2>
+        Order<br>
+        Received.
+      </h2>
+
+      <p>
+        Thank you for choosing SB Sport Wears.
+        Your order request has been received.
+        Our team can now contact you to confirm
+        availability, delivery and payment.
+      </p>
+
+      <div
+        class="order-number"
+        id="orderNumber"
+      >
+        ORDER #SB000000
+      </div>
+
+      <br>
+
+      <a
+        href="index.html"
+        class="back-home"
+      >
+        BACK TO HOME →
+      </a>
+
+    </section>
+
+
+    <!-- CHECKOUT LAYOUT -->
+
+    <div
+      class="checkout-layout"
+      id="checkoutLayout"
+    >
+
+      <!-- CUSTOMER FORM -->
+
+      <section>
+
+        <form id="checkoutForm">
+
+          <!-- CUSTOMER -->
+
+          <div class="form-section">
+
+            <div class="section-heading">
+
+              <h2>
+                Your Details
+              </h2>
+
+              <span>
+                01 / 03
+              </span>
+
+            </div>
+
+
+            <div class="form-row">
+
+              <div class="field">
+
+                <label for="firstName">
+                  First Name
+                </label>
+
+                <input
+                  type="text"
+                  id="firstName"
+                  placeholder="First name"
+                  required
+                >
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="lastName">
+                  Last Name
+                </label>
+
+                <input
+                  type="text"
+                  id="lastName"
+                  placeholder="Last name"
+                  required
+                >
+
+              </div>
+
+            </div>
+
+
+            <div class="form-row">
+
+              <div class="field">
+
+                <label for="email">
+                  Email
+                </label>
+
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="you@example.com"
+                  required
+                >
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="phone">
+                  Phone / WhatsApp
+                </label>
+
+                <input
+                  type="tel"
+                  id="phone"
+                  placeholder="Your number"
+                  required
+                >
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- DELIVERY -->
+
+          <div class="form-section">
+
+            <div class="section-heading">
+
+              <h2>
+                Delivery
+              </h2>
+
+              <span>
+                02 / 03
+              </span>
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="address">
+                Delivery Address
+              </label>
+
+              <input
+                type="text"
+                id="address"
+                placeholder="Street address"
+                required
+              >
+
+            </div>
+
+
+            <div class="form-row">
+
+              <div class="field">
+
+                <label for="city">
+                  City
+                </label>
+
+                <input
+                  type="text"
+                  id="city"
+                  placeholder="City"
+                  required
+                >
+
+              </div>
+
+
+              <div class="field">
+
+                <label for="country">
+                  Country
+                </label>
+
+                <select
+                  id="country"
+                  required
+                >
+
+                  <option value="">
+                    Select country
+                  </option>
+
+                  <option value="Nigeria">
+                    Nigeria
+                  </option>
+
+                  <option value="Saudi Arabia">
+                    Saudi Arabia
+                  </option>
+
+                  <option value="Ghana">
+                    Ghana
+                  </option>
+
+                  <option value="Kenya">
+                    Kenya
+                  </option>
+
+                  <option value="United Kingdom">
+                    United Kingdom
+                  </option>
+
+                  <option value="Other">
+                    Other
+                  </option>
+
+                </select>
+
+              </div>
+
+            </div>
+
+
+            <div class="field">
+
+              <label for="notes">
+                Order Notes
+              </label>
+
+              <textarea
+                id="notes"
+                placeholder="Size, preferred delivery time, special requests..."
+              ></textarea>
+
+            </div>
+
+          </div>
+
+
+          <!-- PAYMENT -->
+
+          <div class="form-section">
+
+            <div class="section-heading">
+
+              <h2>
+                Payment
+              </h2>
+
+              <span>
+                03 / 03
+              </span>
+
+            </div>
+
+
+            <div class="payment-box">
+
+              <div class="payment-option">
+
+                <div class="payment-icon">
+                  SB
+                </div>
+
+                <div class="payment-text">
+
+                  <strong>
+                    Payment Confirmation
+                  </strong>
+
+                  <span>
+                    Payment method can be confirmed with
+                    SB Sport Wears after your order request.
+                  </span>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <button
+            type="submit"
+            class="place-order"
+          >
+            PLACE ORDER →
+          </button>
+
+        </form>
+
+      </section>
+
+
+      <!-- ORDER SUMMARY -->
+
+      <aside class="order-summary">
+
+        <div class="summary-label">
+          Your Order
+        </div>
+
+        <h2>
+          Order<br>
+          Summary.
+        </h2>
+
+
+        <div
+          class="order-items"
+          id="orderItems"
+        ></div>
+
+
+        <div class="summary-lines">
+
+          <div class="summary-line">
+
+            <span>
+              Subtotal
+            </span>
+
+            <span id="subtotal">
+              $0.00
+            </span>
+
+          </div>
+
+
+          <div class="summary-line">
+
+            <span>
+              Delivery
+            </span>
+
+            <span>
+              Confirmed later
+            </span>
+
+          </div>
+
+
+          <div class="summary-line total">
+
+            <span>
+              Total
+            </span>
+
+            <span id="total">
+              $0.00
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="secure-note">
+          This is a demo checkout flow.
+          Connect a real payment/order system before launch.
+        </div>
+
+      </aside>
+
+    </div>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="footer-top">
+
+      <div class="footer-brand">
+        SB <span>SPORT WEARS</span>
+      </div>
+
+      <div class="footer-links">
+
+        <a href="index.html">
+          Home
+        </a>
+
+        <a href="shop.html">
+          Shop
+        </a>
+
+        <a href="about.html">
+          About
+        </a>
+
+        <a href="contact.html">
+          Contact
+        </a>
+
+        <a href="cart.html">
+          Cart
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+      <span>
+        © 2026 SB Sport Wears. All rights reserved.
+      </span>
+
+      <span>
+        Website designed & developed by WebFoundry
+      </span>
+
+    </div>
+
+  </footer>
+
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    /* =========================
+       LOAD CART
+    ========================= */
+
+    let cart =
+      JSON.parse(localStorage.getItem("sbCart")) || [];
+
+
+    const cartCount =
+      document.getElementById("cartCount");
+
+    const orderItems =
+      document.getElementById("orderItems");
+
+    const subtotalElement =
+      document.getElementById("subtotal");
+
+    const totalElement =
+      document.getElementById("total");
+
+
+    /* =========================
+       RENDER ORDER
+    ========================= */
+
+    function renderOrder() {
+
+      orderItems.innerHTML = "";
+
+      let itemCount = 0;
+      let subtotal = 0;
+
+
+      cart.forEach(item => {
+
+        const quantity =
+          Number(item.quantity) || 0;
+
+        const price =
+          Number(item.price) || 0;
+
+        const itemTotal =
+          quantity * price;
+
+        itemCount += quantity;
+        subtotal += itemTotal;
+
+
+        const row =
+          document.createElement("div");
+
+        row.className = "order-item";
+
+        row.innerHTML = `
+
+          <div>
+
+            <div class="order-item-name">
+              ${escapeHTML(item.name)}
+            </div>
+
+            <span class="order-item-quantity">
+              Qty: ${quantity}
+            </span>
+
+          </div>
+
+          <div class="order-item-price">
+            $${itemTotal.toFixed(2)}
+          </div>
+
+        `;
+
+        orderItems.appendChild(row);
+
+      });
+
+
+      cartCount.textContent = itemCount;
+
+      subtotalElement.textContent =
+        `$${subtotal.toFixed(2)}`;
+
+      totalElement.textContent =
+        `$${subtotal.toFixed(2)}`;
+
+    }
+
+
+    /* =========================
+       FORM SUBMISSION
+    ========================= */
+
+    const checkoutForm =
+      document.getElementById("checkoutForm");
+
+    checkoutForm.addEventListener(
+      "submit",
+      function(event) {
+
+        event.preventDefault();
+
+
+        if (cart.length === 0) {
+
+          alert(
+            "Your cart is empty. Please add a product before checkout."
+          );
+
+          window.location.href =
+            "shop.html";
+
+          return;
+
+        }
+
+
+        const firstName =
+          document
+            .getElementById("firstName")
+            .value
+            .trim();
+
+        const lastName =
+          document
+            .getElementById("lastName")
+            .value
+            .trim();
+
+        const email =
+          document
+            .getElementById("email")
+            .value
+            .trim();
+
+        const phone =
+          document
+            .getElementById("phone")
+            .value
+            .trim();
+
+        const address =
+          document
+            .getElementById("address")
+            .value
+            .trim();
+
+        const city =
+          document
+            .getElementById("city")
+            .value
+            .trim();
+
+        const country =
+          document
+            .getElementById("country")
+            .value;
+
+
+        if (
+          !firstName ||
+          !lastName ||
+          !email ||
+          !phone ||
+          !address ||
+          !city ||
+          !country
+        ) {
+
+          return;
+
+        }
+
+
+        /*
+          Demo order number.
+
+          In a real store this should be generated
+          by the backend/order system.
+        */
+
+        const orderNumber =
+          "SB" +
+          Date.now()
+            .toString()
+            .slice(-6);
+
+
+        document.getElementById(
+          "orderNumber"
+        ).textContent =
+          `ORDER #${orderNumber}`;
+
+
+        /*
+          IMPORTANT:
+
+          This demo does not process real payments.
+
+          Before launch, connect this form to:
+          - SB's actual order system
+          - WhatsApp
+          - Email
+          - Payment provider
+          - Backend/database
+        */
+
+
+        localStorage.removeItem("sbCart");
+
+        cart = [];
+
+        document.getElementById(
+          "checkoutLayout"
+        ).style.display = "none";
+
+        document.getElementById(
+          "successScreen"
+        ).classList.add("show");
+
+        cartCount.textContent = "0";
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+
+      }
+    );
+
+
+    /* =========================
+       ESCAPE HTML
+    ========================= */
+
+    function escapeHTML(value) {
+
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+    }
+
+
+    /* =========================
+       START
+    ========================= */
+
+    renderOrder();
+
+  </script>
+
+</body>
+</html>
